@@ -22,11 +22,14 @@ def dmerge(d, *dicts):
         d2.update(d)
     return d2
 
-icon_color = "#5b636b"
-sep_color = "#00b0cc"
-ok_color = "#00ae58"
-warn_color = "#ac9510"
-alert_color = "#f46864"
+icon_color = "#dbe6ec"
+sep_color = "#3f4f66"
+# green
+ok_color = "#a0ee9c"
+# yellow
+warn_color = "#eedd92"
+# red
+alert_color = "#f88377"
 
 
 
