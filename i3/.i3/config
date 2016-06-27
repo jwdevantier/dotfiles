@@ -4,12 +4,12 @@ set $mod Mod4
 
 
 # [Application Launchers]
-bindsym $mod+Return exec "gnome-terminal"
+bindsym $mod+Return exec "urxvt"
 bindsym $mod+Shift+w exec "firefox"
 bindsym $mod+Shift+e exec "emacs"
 bindsym $mod+d exec "dmenu_run -b"
 bindsym $mod+Shift+b "xset dpms force off" #disable screen blanking
-bindsym $mod+l exec "i3lock -c 2c3e50"
+bindsym $mod+l exec "i3lock -c e7dfd5"
 bindsym $mod+- exec "vmware-user"
 
 #split container horizontally
@@ -99,11 +99,12 @@ bar {
 	position top
 	status_command python3 ~/.i3/bar.py
 	colors {
-		background #2c3e50
-		statusline #95a5a6
-		focused_workspace #bdc3c7 #34495e #ecf0f1
-		active_workspace #7f8c8d #34495e #95a5a6
-		inactive_workspace #2c3e50 #2c3e50 #7f8c8d
+		background #faf0e6
+		statusline #5b636b
+		#					border	backgr.	text
+		focused_workspace	#0866cb #0866cb #eeeeee
+		active_workspace	#a65cba #a65cba #eeeeee
+		inactive_workspace	#faf0e6 #faf0e6 #5b636b
 	}
 }
 
@@ -118,15 +119,23 @@ bar {
 #client.unfocused - window which isn't active at the moment, nor the to-be
 #                   active window on moving focus into its parent container
 
-#			border	backgr.	text	indicator
-client.focused          #708090 #506070 #EEEEEE
-client.focused_inactive #333333 #5F676A #EEEEEE
-client.unfocused	#34495e #2c3e50 #fdf6e3 #292d2e
+#						border	backgr.	text	indicator
+client.focused          #00b0cc #00b0cc #EEEEEE #a65cba
+client.focused_inactive #0866cb #0866cb #EEEEEE #0866cb
+client.unfocused		#0866cb #0866cb #fdf6e3 #0866cb
 
+#5b636b - gray
+#0866cb -- beautiful dark blue
+
+
+
+# 389bff -- blue
+# 00b0cc -- cyan
+#f86868 -- beau red
 new_window normal 2
 
 #set BG colour
-exec /usr/bin/xsetroot -solid "#2c3e50"
+exec /usr/bin/xsetroot -solid "#e7dfd5"
 
 exec vmware-user --no-startup-id
 exec nm-applet
