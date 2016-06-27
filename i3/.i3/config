@@ -2,15 +2,17 @@
 
 set $mod Mod4
 
-
 # [Application Launchers]
 bindsym $mod+Return exec "urxvt"
 bindsym $mod+Shift+w exec "firefox"
-bindsym $mod+Shift+e exec "emacs"
-bindsym $mod+d exec "dmenu_run -b"
+bindsym $mod+Shift+e exec "code"
+# use xfontsel to find the font
+# (click fmly[Family] to select a family, pxlsz for pixelsize etc)
+# copy the long string out, note how each menu in xfontself yields an entry in the final font output
+# (-* ===> unset/any)
+bindsym $mod+d exec "dmenu_run -b -nb '#363a4f' -nf '#dee2f8' -sb '#00965d' -fn '-*-terminus-bold-*-*-*-14-*-*-*-*-*-*-*'"
 bindsym $mod+Shift+b "xset dpms force off" #disable screen blanking
 bindsym $mod+l exec "i3lock -c 303340"
-bindsym $mod+- exec "vmware-user"
 
 #split container horizontally
 bindsym $mod+h split h
@@ -99,14 +101,15 @@ bar {
 	position top
 	status_command python3 ~/.i3/bar.py
 	colors {
+		# focused_workspace		- the currently active WS
+		# active_workspace		- the workspace currently displayed on the
+		#						  alternate screen.
+		# inactive_workspace	- some other WS
 		background #363a4f
 		statusline #dee2f8
 		#					border	backgr.	text
-		# the actual, current WS
 		focused_workspace	#00965d #00965d #dbe6ec
-		# the currently shown WS on the other screen
 		active_workspace	#3f4f66 #3f4f66 #dbe6ec
-		# other, not shown WS'
 		inactive_workspace	#363a4f #363a4f #8f9fab
 	}
 }
@@ -127,14 +130,7 @@ client.focused          #00965d #00965d #dbe6ec #a65cba
 client.focused_inactive #3f4f66 #3f4f66 #dbe6ec #0866cb
 client.unfocused		#262f3a #262f3a #dbe6ec #0866cb
 
-#5b636b - gray
-#0866cb -- beautiful dark blue
 
-
-
-# 389bff -- blue
-# 00b0cc -- cyan
-#f86868 -- beau red
 new_window normal 2
 
 #set BG colour
