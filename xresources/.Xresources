@@ -1,0 +1,38 @@
+#include ".Xresources.d/themes/raven-light"
+
+
+! -------------------------------------------------------------------------
+
+! use xft fonts for rendering as it supports anti-aliasing (unlike core)
+! for xft fonts, use "fclist | grep -i <font name>" to find its name.
+! e.g. fc-list |grep -i andale => "Andale Mono"
+
+! use pixelsize or size for sizing, e.g. "Andale Mono:size=9"
+
+URxvt*font: xft:Source Code Pro:size=10
+URxvt*boldFont: xft:Source Code Pro:size=10
+
+
+
+!Xft.rgba: none
+!Xft.hintstyle: hintfull
+
+
+
+! Scrollbar style - rxvt (default), plain (most compact), next, or xterm
+URxvt.scrollstyle: plain
+
+! iso14755 screws up key combinations relying on C-M- 
+URxvt.iso14755: false
+
+URxvt.perl-ext-common: keyboard-select,clipboard
+
+! keyboard-select
+URxvt.keysym.M-s: perl:keyboard-select:activate
+URxvt.keysym.M-r: perl:keyboard-select:search
+
+! clipboard
+! update clipboard whenever primary gets updated
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped

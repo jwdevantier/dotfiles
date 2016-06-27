@@ -1,0 +1,132 @@
+#Mod1=ALT, Mod4=META/CMD/SUPER
+
+set $mod Mod4
+
+
+# [Application Launchers]
+bindsym $mod+Return exec "gnome-terminal"
+bindsym $mod+Shift+w exec "firefox"
+bindsym $mod+Shift+e exec "emacs"
+bindsym $mod+d exec "dmenu_run -b"
+bindsym $mod+Shift+b "xset dpms force off" #disable screen blanking
+bindsym $mod+l exec "i3lock -c 2c3e50"
+bindsym $mod+- exec "vmware-user"
+
+#split container horizontally
+bindsym $mod+h split h
+#split continer vertically
+bindsym $mod+v split v
+#make focused container fullsreen
+bindsym $mod+f fullscreen
+
+
+# [Window management]
+
+#move focus between windows
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+q kill
+#hold MOD while dragging a floating window to move it
+floating_modifier $mod
+bindsym $mod+Shift+f floating toggle
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout default
+
+mode "resize" {
+     bindsym Left resize shrink width 10 px or 10 ppt
+     bindsym Right resize grow width 10 px or 10 ppt
+     bindsym Down resize shrink height 10 px or 10 ppt
+     bindsym Up resize grow height 10 px or 10 ppt
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# [Workspace management]
+
+#move between workspaces
+bindsym $mod+Control+Left  workspace prev
+bindsym $mod+Control+Right workspace next
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+#move container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+# [Session management]
+
+bindsym $mod+c reload
+bindsym $mod+Shift+x restart
+bindsym $mod+Shift+z exit
+
+# [Theming]
+font pango:Terminus 9, FontAwesome 9
+#CUSTOM(dark)
+############################################################
+#fix txt colour in bar
+bar {
+	position top
+	status_command python3 ~/.i3/bar.py
+	colors {
+		background #2c3e50
+		statusline #95a5a6
+		focused_workspace #bdc3c7 #34495e #ecf0f1
+		active_workspace #7f8c8d #34495e #95a5a6
+		inactive_workspace #2c3e50 #2c3e50 #7f8c8d
+	}
+}
+
+# Theming info:
+# border: two, horizontal 1px lines framing the window's title
+# background: the actual, "fill" colour of the window's title and "border"
+# text: colour of window title text
+# indicator: colour applied to the edge of the window indicating the next split
+
+#client.focused - currently active window
+#client.focused_inactive - window becoming focused when moving into its container
+#client.unfocused - window which isn't active at the moment, nor the to-be
+#                   active window on moving focus into its parent container
+
+#			border	backgr.	text	indicator
+client.focused          #708090 #506070 #EEEEEE
+client.focused_inactive #333333 #5F676A #EEEEEE
+client.unfocused	#34495e #2c3e50 #fdf6e3 #292d2e
+
+new_window normal 2
+
+#set BG colour
+exec /usr/bin/xsetroot -solid "#2c3e50"
+
+exec vmware-user --no-startup-id
+exec nm-applet
