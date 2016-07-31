@@ -5,7 +5,8 @@ set $mod Mod4
 # [Application Launchers]
 bindsym $mod+Return exec "urxvt"
 bindsym $mod+Shift+w exec "firefox"
-bindsym $mod+Shift+e exec "code"
+bindsym $mod+Shift+e exec "emacs"
+bindsym $mod+Shift+c exec "code"
 # use xfontsel to find the font
 # (click fmly[Family] to select a family, pxlsz for pixelsize etc)
 # copy the long string out, note how each menu in xfontself yields an entry in the final font output
