@@ -7,7 +7,7 @@ status = Status()
 def dget(d, *path):
     d2 = d
     for p in path:
-        d2 = d[p]
+        d2 = d2[p]
     return d2
 
 def dassoc(d, key, val):
