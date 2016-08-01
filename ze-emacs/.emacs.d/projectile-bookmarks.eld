@@ -1,0 +1,1 @@
+("~/repos/clojure/rqmn/" "~/repos/clojure/picture-gallery/" "~/repos/dotfiles/ze-emacs/" "~/repos/clojure/reporting-example/" "~/repos/clojure/guestbook/" "~/repos/clojure/db-examples/" "~/repos/clojure/swagger-service/")
