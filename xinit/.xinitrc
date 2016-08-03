@@ -1,8 +1,13 @@
 #!/bin/bash
 #
+command_exists () {
+    type "$1" &> /dev/null ;
+}
 
-failsafe="xterm -ls -T Failsafe -geometry 80x24-0-0"
-trap "exec $failsafe" EXIT SIGHUP SIGINT SIGPIPE SIGTERM SIGIO
+if command_exists xterm; then
+  failsafe="xterm -ls -T Failsafe -geometry 80x24-0-0"
+  trap "exec $failsafe" EXIT SIGHUP SIGINT SIGPIPE SIGTERM SIGIO
+fi
 
 #
 # Some bash (1 and 2) settings to avoid trouble on a
@@ -21,7 +26,10 @@ fi
 # Source common code shared between the
 # X session and X init scripts
 #
-. /etc/X11/xinit/xinitrc.common
+XINITRC_COMMON="/etc/X11/xinit/xinitrc.common"
+if [[ -r "${XINITRC_COMMON}" ]]; then
+  source "${XINITRC_COMMON}"
+fi
 
 #
 # Uncomment next lines to activate asking for ssh passphrase
@@ -30,15 +38,29 @@ fi
 #       ssh-add < /dev/null
 # fi
 
-command_exists () {
-    type "$1" &> /dev/null ;
-}
 
-# disable the annoying bell/beep
-/usr/bin/xset b off
+
+if command_exists /usr/bin/xset ; then
+  # disable the annoying bell/beep
+  /usr/bin/xset b off
+fi
 
 if command_exists vmware-user-autostart-wrapper ; then
-    vmware-user-autostart-wrapper &
+  set +e
+  vmware-user-autostart-wrapper &
+  set -e
+fi
+
+if [[ -r $HOME/.Xresources ]]; then
+  xrdb -merge $HOME/.Xresources
+fi
+
+if command_exists setxkbmap; then
+  setxkbmap dk
+fi
+
+if command_exists ssh-agent ; then
+  eval $(ssh-agent)
 fi
 
 # 
