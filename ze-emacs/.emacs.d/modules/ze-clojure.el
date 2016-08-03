@@ -18,8 +18,7 @@
     (setq cider-cljs-lein-repl
 	  "(do (require 'figwheel-sidecar.repl-api)
                (figwheel-sidecar.repl-api/start-figwheel!)
-               (figwheel-sidecar.repl-api/cljs-repl))")
-    (add-hook 'after-save-hook 'cider-refresh))
+               (figwheel-sidecar.repl-api/cljs-repl))"))
   (add-hook 'cider-mode-hook 'cider-mode-defaults))
 
 (provide 'ze-clojure)
