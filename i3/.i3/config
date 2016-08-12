@@ -138,4 +138,6 @@ new_window normal 2
 exec /usr/bin/xsetroot -solid "#303340"
 
 exec vmware-user --no-startup-id
+exec vmware-user-suid-wrapper --no-startup-id
+
 exec nm-applet
