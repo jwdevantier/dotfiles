@@ -67,7 +67,8 @@ fi
 # finally start the window manager
 #
 unset WINDOW_MANAGER STARTUP
-exec $WINDOWMANAGER ${1+"$@"}
+#exec $WINDOWMANAGER ${1+"$@"}
+exec i3
 
 # call failsafe
 exit 0
