@@ -1,10 +1,10 @@
 
-(defvar ze-theme/deps '(base16-theme powerline))
+(defvar ze-theme/deps '(spacemacs-theme powerline))
 
 (defun ze-theme/init ()
   ;; (have to run before highlight font customization or else the theme
   ;; will override them.
-  (load-theme 'base16-ocean-dark t)
+  (load-theme 'spacemacs-light t)
 
   ;; 1) M-x 'set-default-font'  -- TAB twice to get a list
   ;; 2) scroll through, try each until you find something you like

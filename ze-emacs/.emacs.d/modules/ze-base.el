@@ -1,7 +1,15 @@
-(defvar ze-base/deps '(move-text))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color))
+(require 'ansi-color)
 
 (defun ze-base/init ()
   (message "ze-base/init called")
+
+;(require 'xterm-color)
+  ;; comint install
+;(progn (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter)
+;       (setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
+;       (setq font-lock-unfontify-region-function 'xterm-color-unfontify-region))
+;  (setenv "TERM" "xterm-256color")
   ;; Tweak Emacs UI
   ;; --------------
   (if window-system                                ; hide tool bar (only triggers in GUI mode)
