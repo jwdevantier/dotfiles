@@ -4,8 +4,9 @@
   ;; autoload - only load modules in when clojure-mode is requested
   (autoload 'clojure-mode "clojure-mode" "Major mode for editing Clojure code" t)
 
-  ;; ensure .clj/.cljc files trigger clojure-mode (and .cljs trigger clojure-script)
-  (add-to-list 'auto-mode-alist '("\\.clj[c]?$" . clojure-mode))
+  ;; trigger the right clojure/clojure common/clojurescript modes
+  (add-to-list 'auto-mode-alist '("\\.clj?$" . clojure-mode))
+  (add-to-list 'auto-mode-alist '("\\.cljc?$" . clojurec-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
 
   (eval-after-load 'clojure-mode
