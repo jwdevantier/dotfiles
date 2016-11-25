@@ -39,6 +39,7 @@
 
 (ze-mod-load "theme") ;; load before 'base'
 (ze-mod-load "base") ;; TODO - can we ensure highlighting options apply LAST? (some hook?)
+(ze-mod-load "mac") ;; (IFF mac OS) - load mac-specific tweaks
 (ze-mod-load "common")
 (ze-mod-load "projectile")
 (ze-mod-load "neotree")
