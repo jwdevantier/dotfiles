@@ -1,4 +1,4 @@
-(defvar ze-base/deps '(move-text eval-in-repl xterm-color))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell))
 (require 'ansi-color)
 
 (defun ze-base/init ()
@@ -51,6 +51,9 @@
   (global-set-key [M-down] 'windmove-down)
   (global-set-key [M-left] 'windmove-left)
   (global-set-key [M-right] 'windmove-right)
+
+  ;; Ensure Emacs PATH var corresponds to shell's
+  (exec-path-from-shell-initialize)
 
   ;; Highlighting settings
   ;; ---------------------
