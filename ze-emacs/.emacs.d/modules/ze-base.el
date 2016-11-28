@@ -1,4 +1,4 @@
-(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell helm-ag))
 (require 'ansi-color)
 
 (defun ze-base/init ()
