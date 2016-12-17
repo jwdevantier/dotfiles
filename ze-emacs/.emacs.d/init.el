@@ -31,7 +31,8 @@
 ;; warn on opening files greater than 30MB
 (setq large-file-warning-threshold (ze-mb->b 30))
 
-(add-to-list 'load-path "~/.emacs.d/modules")
+(dolist (path '("~/.emacs.d/modules" "~/.emacs.d/shared"))
+  (push path load-path))
 (require 'ze-pkg)
 
 ;; Can I have modules depend on (and thereby force-load) other modules?
