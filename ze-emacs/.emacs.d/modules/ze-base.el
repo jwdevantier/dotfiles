@@ -1,15 +1,34 @@
-(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell helm-ag))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell helm-ag paredit))
 (require 'ansi-color)
+
+(defun ze-base/enable-paredit* ()
+  ;;enable paredit support for emacs lisp
+  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  (dolist (mode '(emacs-lisp-mode-hook
+		  ielm-mode-hook
+		  lisp-mode-hook
+		  lisp-interaction-mode-hook
+		  scheme-mode-hook))
+    (add-hook mode #'enable-paredit-mode))
+  (add-hook 'paredit-mode-hook
+	    (lambda ()
+	      (define-key paredit-mode-map [M-down] nil)
+	      (define-key paredit-mode-map [M-up] nil)
+	      (define-key paredit-mode-map (kbd "C-M-k") 'paredit-kill-region))))
 
 (defun ze-base/init ()
   (message "ze-base/init called")
 
-;(require 'xterm-color)
+  ;;(require 'xterm-color)
   ;; comint install
-;(progn (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter)
-;       (setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
-;       (setq font-lock-unfontify-region-function 'xterm-color-unfontify-region))
-;  (setenv "TERM" "xterm-256color")
+  ;;(progn (add-hook 'comint-preoutput-filter-functions 'xterm-color-filter)
+  ;;       (setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
+  ;;       (setq font-lock-unfontify-region-function 'xterm-color-unfontify-region))
+  ;;(setenv "TERM" "xterm-256color")
+
+  ;; enable paredit mode for lisp's
+  (ze-base/enable-paredit*)
+
   ;; Tweak Emacs UI
   ;; --------------
   (if window-system                                ; hide tool bar (only triggers in GUI mode)
