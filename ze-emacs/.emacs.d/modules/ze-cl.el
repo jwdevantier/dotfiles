@@ -22,7 +22,7 @@
 
        (add-hook 'slime-repl-mode-hook
 		 (lambda ()
-		   (smartparens-strict-mode +1)
+		   (paredit-mode)
 		   (whitespace-mode -1)))))
   
   (eval-after-load "slime"
@@ -33,7 +33,42 @@
 	     slime-autodoc-use-multiline-p t
 	     slime-auto-start 'always)
 
-       (define-key slime-mode-map (kbd "TAB") 'slime-indent-and-complete-symbol)
-       (define-key slime-mode-map (kbd "C-c C-s") 'slime-selector))))
+       (dolist (bind '(("TAB" . slime-indent-and-complete-symbol)
+		       ("C-c C-s" . slime-selector)
+		       ;;Documentation
+		       ("H-h s" . slime-describe-symbol)
+		       ("H-h f" . slime-describe-function)
+		       ("H-h a" . slime-apropos)
+		       ("H-h p" . slime-apropos-package)
+		       ("H-h d" . slime-hyperspec-lookup)
+		       ;;X-ref
+		       ("H-x c" . slime-who-calls)
+		       ("H-x w" . slime-calls-who)
+		       ("H-x r" . slime-who-references)
+		       ("H-x b" . slime-who-binds)
+		       ("H-x s" . slime-who-sets)
+		       ("H-x m" . slime-who-macroexpands)
+		       ;; Profiling
+		       ("H-p f" . slime-toggle-profile-fdefinition)
+		       ("H-p p" . slime-profile-package)
+		       ("H-p s" . slime-profile-by-substring)
+		       ("H-p q" . slime-unprofile-all)
+		       ("H-p r" . slime-profile-report)
+		       ("H-p c" . slime-profile-reset)
+		       ;; REPL - amalgation of categories
+		       ("H-r k" . slime-compile-and-load-file)
+		       ("H-r e" . slime-eval-last-expression) ;; C-c C-e ?
+		       ("H-r s" . slime-sync-package-and-default-directory)
+
+		       ("H-r d" . slime-eval-defun)
+		       ("H-r t" . slime-toggle-trace-fdefinition)
+		       ("H-r T" . slime-untrace-all)
+
+		       ("H-r p" . slime-repl-set-package)
+		       ("H-r P" . slime-cd)
+
+		       ("H-r m" . slime-macroexpand-1)
+		       ("H-r M" . slime-macroexpand-all)))
+	 (define-key slime-mode-map (kbd (car bind)) (cdr bind))))))
 
 (provide 'ze-cl)
