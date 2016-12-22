@@ -10,11 +10,36 @@
 		  lisp-interaction-mode-hook
 		  scheme-mode-hook))
     (add-hook mode #'enable-paredit-mode))
+  (let ((-ze-paredit-wrap (lambda ()
+			    ()))))
   (add-hook 'paredit-mode-hook
 	    (lambda ()
-	      (define-key paredit-mode-map [M-down] nil)
-	      (define-key paredit-mode-map [M-up] nil)
-	      (define-key paredit-mode-map (kbd "C-M-k") 'paredit-kill-region))))
+	      (->>
+	       '(("M-<down>" . nil)
+		 ("M-<up>" . nil)
+		 ("C-M-k" . paredit-kill-region)
+		 ;; Wrap SEXP
+		 ("H-w (" . paredit-wrap-round)
+		 ("H-w [" . paredit-wrap-square)
+		 ("H-w {" . paredit-wrap-curly)
+		 ;; H-s + <left>/<right> --> splurp, + M to barf
+		 ("H-s <left>" . paredit-backward-slurp-sexp)
+		 ("H-s <right>" . paredit-forward-slurp-sexp)
+		 ("H-s M-<left>" . paredit-backward-barf-sexp)
+		 ("H-s M-<right>" . paredit-forward-barf-sexp)
+		 ;; H-s + <up>/<down>/SPC  --> splice
+		 ("H-s <up>" . paredit-splice-sexp-killing-forward)
+		 ("H-s <down>" . paredit-splice-sexp-killing-backward)
+		 ("H-s SPC" . paredit-splice-sexp)
+		 ;; Navigation
+		 ("H-<right>" . paredit-forward)
+		 ("H-<left>" . paredit-backward)
+		 ("H-<down>" . paredit-forward-down)
+		 ("H-M-<down>" . paredit-backward-down)
+		 ("H-<up>" . paredit-backward-up)
+		 ("H-M-<up>" . paredit-forward-up)
+		 )
+	       (ze:bind paredit-mode-map)))))
 
 (defun ze-base/init ()
   (message "ze-base/init called")
