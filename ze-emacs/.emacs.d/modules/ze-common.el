@@ -29,6 +29,18 @@
   (file-name-directory
    (directory-file-name n)))
 
+(defun ze:bind (mode-map bindings)
+  "Bind keys to mode.
+Takes a mode map (e.g. slime-mode-map) and a list of dotted pairs.
+The first entry of a pair is the keyboard sequence expressed as a string,
+the second is the corresponding function to invoke.
+
+(e.g. '((\"TAB\" . 'slime-indent-and-complete-symbol))
+
+NOTE: to clear a keybind, pass nil as the second value of the pair"
+  (dolist (binding bindings)
+    (define-key mode-map (kbd (car binding)) (cdr binding))))
+
 (cl-defun ze:join (lst &optional (join-str nil))
   ;; concat list of strings (lst).
   ;; optionally, a join-string can be defined to be interposed between
