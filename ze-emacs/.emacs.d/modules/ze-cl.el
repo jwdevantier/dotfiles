@@ -5,6 +5,14 @@
   (add-to-list 'auto-mode-alist '("\\.sbclrc\\'" . lisp-mode))
   (add-to-list 'auto-mode-alist '("\\.lisp\\'" . lisp-mode))
 
+  (add-hook
+   'lisp-mode-hook
+   (lambda ()
+     (setq prettify-symbols-alist
+	   '(("lambda" . 955) ;; λ
+	     ))))
+  (global-prettify-symbols-mode 1)
+
   (eval-after-load 'lisp-mode
     '(progn
        (message "CL (lisp) mode loaded...")
