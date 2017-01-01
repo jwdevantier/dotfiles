@@ -1,6 +1,16 @@
 (defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell helm-ag paredit))
 (require 'ansi-color)
 
+(defun ze-base/-ze-paredit-kill (beg end)
+  "Kill sexp or selected region.
+Kills a sexp (paredit-kill) or an entire region (paredit-kill-region) if
+one is selected & active."
+  (interactive "r")
+  (if (use-region-p)
+      (progn (message "killing region")
+             (paredit-kill-region beg end))
+    (paredit-kill)))
+
 (defun ze-base/enable-paredit* ()
   ;;enable paredit support for emacs lisp
   (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -17,7 +27,7 @@
 	      (->>
 	       '(("M-<down>" . nil)
 		 ("M-<up>" . nil)
-		 ("C-M-k" . paredit-kill-region)
+		 ("C-k" . ze-base/-ze-paredit-kill)
 		 ;; Wrap SEXP
 		 ("H-w (" . paredit-wrap-round)
 		 ("H-w [" . paredit-wrap-square)
