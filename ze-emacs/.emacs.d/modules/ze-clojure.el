@@ -19,7 +19,21 @@
     (setq cider-cljs-lein-repl
 	  "(do (require 'figwheel-sidecar.repl-api)
                (figwheel-sidecar.repl-api/start-figwheel!)
-               (figwheel-sidecar.repl-api/cljs-repl))"))
+               (figwheel-sidecar.repl-api/cljs-repl))")
+
+    (dolist (bind '(;;Documentation
+		    ("H-h f" . cider-doc)
+		    ("H-h s" . cider-doc)
+		    ("H-h a" . cider-apropos)
+		    ;;Can we get hyperspec lookup..??
+
+		    ;; REPL - amalgation of categories
+		    ("H-r k" . cider-load-file)
+		    ("H-r e" . cider-eval-last-sexp)
+		    ("H-r d" . cider-eval-defun-at-point)
+		    ("H-r p" . cider-repl-set-ns) ;; - set REPL NS
+		    ("H-r m" . cider-macroexpand-1)
+		    ("H-r M" . cider-macroexpand-all)))))
   (add-hook 'cider-mode-hook 'cider-mode-defaults))
 
 (provide 'ze-clojure)
