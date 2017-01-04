@@ -28,10 +28,21 @@
 		    ;;Can we get hyperspec lookup..??
 
 		    ;; REPL - amalgation of categories
+		    ("H-r r" . cider-jack-in)
+		    ("H-r R" . cider-jack-in-clojurescript)
 		    ("H-r k" . cider-load-file)
 		    ("H-r e" . cider-eval-last-sexp)
+		    ("H-r s" . cider-refresh)
+
+
 		    ("H-r d" . cider-eval-defun-at-point)
+		    ("H-r t" . cider-toggle-trace-var)
+		    ("H-r T" . cider-toggle-trace-ns);; not same as slime(untrace) but useful
+
+
 		    ("H-r p" . cider-repl-set-ns) ;; - set REPL NS
+
+
 		    ("H-r m" . cider-macroexpand-1)
 		    ("H-r M" . cider-macroexpand-all)))))
   (add-hook 'cider-mode-hook 'cider-mode-defaults))

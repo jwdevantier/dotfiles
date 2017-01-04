@@ -64,6 +64,7 @@
 		       ("H-p r" . slime-profile-report)
 		       ("H-p c" . slime-profile-reset)
 		       ;; REPL - amalgation of categories
+		       ("H-r r" . slime)
 		       ("H-r k" . slime-compile-and-load-file)
 		       ("H-r e" . slime-eval-last-expression) ;; C-c C-e ?
 		       ("H-r s" . slime-sync-package-and-default-directory)
