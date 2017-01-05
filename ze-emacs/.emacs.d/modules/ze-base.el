@@ -20,8 +20,7 @@ one is selected & active."
 		  lisp-interaction-mode-hook
 		  scheme-mode-hook))
     (add-hook mode #'enable-paredit-mode))
-  (let ((-ze-paredit-wrap (lambda ()
-			    ()))))
+
   (add-hook 'paredit-mode-hook
 	    (lambda ()
 	      (->>
