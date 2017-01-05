@@ -1,4 +1,4 @@
-(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell helm-ag paredit))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell paredit))
 (require 'ansi-color)
 
 (defun ze-base/-ze-paredit-kill (beg end)
