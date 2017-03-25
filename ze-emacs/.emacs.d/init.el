@@ -47,7 +47,7 @@
 (ze-mod-load "company")
 (ze-mod-load "ggtags")
 ;(ze-mod-load "fsharp")
-;(ze-mod-load "racket")
+(ze-mod-load "racket")
 (ze-mod-load "clojure")
 ;(ze-mod-load "php")
 ;(ze-mod-load "elm")
