@@ -41,6 +41,17 @@ NOTE: to clear a keybind, pass nil as the second value of the pair"
   (dolist (binding bindings)
     (define-key mode-map (kbd (car binding)) (cdr binding))))
 
+(defun ze:browser-jump (build-url-fn)
+  "Given a function to build the URL from a search term, open the user's browser.
+
+  Arguments:
+  * build-url-fn - function taking one argument, the word/search query"
+  (let ((search-term (if (and transient-mark-mode mark-active)
+			 (buffer-substring-no-properties
+			  (region-beginning) (region-end))
+		       (thing-at-point 'symbol))))
+    (browse-url (funcall build-url-fn search-term))))
+
 (cl-defun ze:join (lst &optional (join-str nil))
   ;; concat list of strings (lst).
   ;; optionally, a join-string can be defined to be interposed between
