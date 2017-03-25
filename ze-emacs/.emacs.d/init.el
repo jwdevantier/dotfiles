@@ -52,8 +52,10 @@
 ;(ze-mod-load "php")
 ;(ze-mod-load "elm")
 (ze-mod-load "python")
-(ze-mod-load "hy")
+;(ze-mod-load "hy")
 (ze-mod-load "cl")
+(ze-mod-load "ts")
+(ze-mod-load "scss-compass")
 
 (eval-after-load 'fsharp-mode
   (add-hook 'fsharp-mode-hook
