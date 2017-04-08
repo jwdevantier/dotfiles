@@ -18,6 +18,7 @@ one is selected & active."
 		  ielm-mode-hook
 		  lisp-mode-hook
 		  lisp-interaction-mode-hook
+		  clojure-mode-hook
 		  scheme-mode-hook))
     (add-hook mode #'enable-paredit-mode))
 
