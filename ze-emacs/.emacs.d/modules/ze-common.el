@@ -12,6 +12,16 @@
     (dolist (form body result)
       (setq result (append form (list result))))))
 
+(defmacro ze:pkgs-installed? (&rest pkgs)
+  "t iff. all packages mentioned are installed.
+
+  Arguments:
+  * pkgs     symbols of packages to check if installed
+
+  Example:
+    (ze:pkgs-installed? 'cider 'helm) => t"
+  `(and ,@(mapcar #'(lambda (pkg) `(require ,pkg nil 'no-err)) pkgs) t))
+
 (defun ze-common/init ()
   (message "common loaded")
   nil)
