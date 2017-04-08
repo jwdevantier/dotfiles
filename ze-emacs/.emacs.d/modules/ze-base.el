@@ -1,4 +1,4 @@
-(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell paredit))
+(defvar ze-base/deps '(move-text eval-in-repl xterm-color exec-path-from-shell paredit which-key))
 (require 'ansi-color)
 
 (defun ze-base/-ze-paredit-kill (beg end)
@@ -81,6 +81,10 @@ one is selected & active."
   (require 'ido)
   (ido-mode t)
   (setq ido-create-new-buffer 'always)
+
+  ;; Which key
+  (require 'which-key)
+  (which-key-mode)
 
   ;; Prompt-related tweaks
   ;; ---------------------
