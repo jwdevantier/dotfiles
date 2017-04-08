@@ -1,4 +1,4 @@
-(defvar ze-clojure/deps '(clojure-mode cider))
+(defvar ze-clojure/deps '(clojure-mode cider helm-cider))
 
 (defun ze-clojure/init ()
   ;; autoload - only load modules in when clojure-mode is requested
@@ -59,9 +59,20 @@
 
 	       ("H-r p" . cider-repl-set-ns) ;; - set REPL NS
 
+	       ;; run all tests associated project
+	       ("H-t p" . cider-test-run-project-tests)
+	       ;; run test @ point (mimic eval defun @ point, hence 'd')
+	       ("H-t d" . cider-test-run-test)
+	       ;; Run tests for current NS (package)
+	       ("H-t p" . cider-test-run-ns-tests)
+	       ;; clear highlights in buffer from last test run
+	       ("H-t c" . cider-test-clear-highlights)
+
 	       ;;macro-expansion tools
 	       ("H-r m" . cider-macroexpand-1)
 	       ("H-r M" . cider-macroexpand-all))))
+
+  (helm-cider-mode 1))
   (add-hook 'cider-mode-hook 'cider-mode-defaults))
 
 (provide 'ze-clojure)
