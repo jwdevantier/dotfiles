@@ -22,6 +22,15 @@
 	  (lambda (search-term)
 	    (concat "https://clojuredocs.org/search?q=" search-term))))))
 
+  ;; keybinds common to edit & REPL buffers
+  (setq ze-clojure-common-keybinds
+	  '(("H-h h" . clojure-hyperspec)))
+
+  (defun cider-repl-mode-defaults ()
+    (ze:bind cider-repl-mode-map
+	     (append ze-clojure-common-keybinds
+		     '(("H-r TAB" . cider-switch-to-last-clojure-buffer)))))
+
   (defun cider-mode-defaults ()
     (message "Cider mode defaults loading...")
     (setq cider-popup-stacktraces nil)
@@ -33,14 +42,21 @@
     ;;            (figwheel-sidecar.repl-api/start-figwheel!)
     ;;            (figwheel-sidecar.repl-api/cljs-repl))")
 
-    (ze:bind cider-mode-map
+    (ze:bind
+     cider-mode-map
+     (append ze-clojure-common-keybinds
 	     '(;;Documentation - duplicate binds to mimic CL setup
 	       ("H-h f" . cider-doc)
 	       ("H-h s" . cider-doc)
+					; search among defs in loaded NS's
 	       ("H-h a" . cider-apropos)
+					; search among loaded NS's
+	       ("H-h n" . cider-browse-ns)
+					; consult clojuredocs on selection/word at point
 	       ("H-h h" . clojure-hyperspec)
 
 	       ;;REPL - amalgation of categories
+	       ("H-r TAB" . cider-switch-to-repl-buffer)
 
 	       ;; load into lein/boot clojure/clojurescript project
 	       ("H-r r" . cider-jack-in)
@@ -73,6 +89,7 @@
 	       ("H-r M" . cider-macroexpand-all))))
 
   (helm-cider-mode 1))
-  (add-hook 'cider-mode-hook 'cider-mode-defaults))
+  (add-hook 'cider-mode-hook 'cider-mode-defaults)
+  (add-hook 'cider-repl-mode-hook 'cider-repl-mode-defaults))
 
 (provide 'ze-clojure)
