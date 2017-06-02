@@ -1,5 +1,25 @@
 (defvar ze-clojure/deps '(clojure-mode cider helm-cider))
 
+(defvar ze:start-cljs-repl-types
+  '("node" "figwheel"))
+
+(defun ze:start-cljs-repl (&optional type)
+  (interactive (list (completing-read "Desired REPL? (tab to complete): "
+				      ze:start-cljs-repl-types)))
+  (when (not (member type ze:start-cljs-repl-types))
+      (error "REPL type '%s' is not recognized. Supported: (%s)"
+	     type (string-join ze:start-cljs-repl-types ", ")))
+  (setq cider-cljs-lein-repl
+	  (cond ((string-equal "node" type)
+		 "(do (require 'cljs.repl.node)
+                      (cemerick.piggieback/cljs-repl (cljs.repl.node/repl-env)))")
+		((string-equal "figwheel" type)
+		 "(do (require 'figwheel-sidecar.repl-api)
+                      (figwheel-sidecar.repl-api/start-figwheel!)
+                      (figwheel-sidecar.repl-api/cljs-repl))")))
+  (message "Starting %s REPL..." type)
+  (call-interactively #'cider-jack-in-clojurescript))
+
 (defun ze-clojure/init ()
   ;; autoload - only load modules in when clojure-mode is requested
   (autoload 'clojure-mode "clojure-mode" "Major mode for editing Clojure code" t)
@@ -60,7 +80,7 @@
 
 	       ;; load into lein/boot clojure/clojurescript project
 	       ("H-r r" . cider-jack-in)
-	       ("H-r R" . cider-jack-in-clojurescript)
+	       ("H-r R" . ze:start-cljs-repl)
 
 	       ;; load file/sexp into process
 	       ("H-r k" . cider-load-file)
