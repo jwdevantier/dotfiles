@@ -33,6 +33,7 @@
     '(progn
        ;; triger cider-mode when entering clojure-mode
        (add-hook 'clojure-mode-hook 'cider-mode)
+       (add-hook 'clojure-mode-hook 'eldoc-mode)
 
        (defun clojure-hyperspec ()
 	 "Function to lookup a given query using clojuredocs.
