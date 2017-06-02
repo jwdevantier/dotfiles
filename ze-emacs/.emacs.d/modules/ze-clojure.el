@@ -44,7 +44,8 @@
 
   ;; keybinds common to edit & REPL buffers
   (setq ze-clojure-common-keybinds
-	  '(("H-h h" . clojure-hyperspec)))
+	'(("H-h h" . clojure-hyperspec)
+	  ("H-r DEL" . cider-repl-clear-buffer)))
 
   (defun cider-repl-mode-defaults ()
     (ze:bind cider-repl-mode-map
