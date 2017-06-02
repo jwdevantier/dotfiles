@@ -81,9 +81,11 @@
 	       ;; load into lein/boot clojure/clojurescript project
 	       ("H-r r" . cider-jack-in)
 	       ("H-r R" . ze:start-cljs-repl)
+	       ("H-r c" . cider-connect)
 
 	       ;; load file/sexp into process
-	       ("H-r k" . cider-load-file)
+	       ("H-r l" . cider-load-file)
+	       ("H-r k" . cider-load-buffer)
 	       ("H-r e" . cider-eval-last-sexp)
 	       ;; eval the current top-level form
 	       ("H-r d" . cider-eval-defun-at-point)
