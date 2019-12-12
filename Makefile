@@ -16,3 +16,6 @@ install: xstow-dep
 uninstall: xstow-dep
 	# removes eaceh profile from target
 	sh -c '$(XSTOW_CMD) -D $(XSTOW_PROFILES)'
+
+i3deps:
+	apt install xfonts-terminus i3 i3lock lxterminal suckless-tools
