@@ -3,7 +3,7 @@
 set $mod Mod4
 
 # [Application Launchers]
-bindsym $mod+Return exec "urxvt"
+bindsym $mod+Return exec "lxterminal"
 bindsym $mod+Shift+w exec "firefox"
 bindsym $mod+Shift+e exec "emacs"
 bindsym $mod+Shift+c exec "code"
@@ -100,7 +100,8 @@ font pango:Terminus 9, FontAwesome 9
 #fix txt colour in bar
 bar {
 	position top
-	status_command python3 ~/.i3/bar.py
+	#status_command python3 ~/.i3/bar.py
+	status_command bash ~/.config/i3/bar
 	colors {
 		# focused_workspace		- the currently active WS
 		# active_workspace		- the workspace currently displayed on the
@@ -141,3 +142,5 @@ exec vmware-user --no-startup-id
 exec vmware-user-suid-wrapper --no-startup-id
 
 exec nm-applet
+
+exec prlcc

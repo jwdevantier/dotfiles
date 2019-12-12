@@ -1,5 +1,4 @@
-# 
-# Docs: https://docs.enkore.de/i3pystatus/
+# Docs: https://i3pystatus.readthedocs.io/en/latest/i3pystatus.html
 from i3pystatus import Status
 
 status = Status()
@@ -73,7 +72,7 @@ register("mem",
     format="{used_mem}/{total_mem}",
     color=ok_color, warn_color=warn_color, alert_color=alert_color)
 register("text", text="  M: ")
-register("cpu_usage", format="C: {usage:02}%")
+register("cpu_usage", "C: {usage:02}%")
 icon("")
 separator()
 
@@ -91,19 +90,22 @@ register("disk", path="/home", **disk_opts)
 icon("")
 separator()
 
-register("alsa", format="{volume}")
-icon("")
-separator()
-
-# Shows mpd status
-# Format:
-# Cloud connected▶Reroute to Remain
-register("mpd",
-    format="{title}{status}{album}",
+status.register(
+    'battery',
+    interval=5,
+    format='{status}: {percentage_design:.2f}%',
+    alert=True,
+    alert_percentage=15,
     status={
-        "pause": "▷",
-        "play": "▶",
-        "stop": "◾",
-    },)
+        'DPL': '',
+        'CHR': '',
+        'DIS': '',
+        'FULL': '',
+    },
+    full_color=ok_color,
+    charging_color=warn_color,
+    critical_color=alert_color,
+)
+separator()
 
 status.run()
