@@ -1,2 +1,4 @@
 **/elpa
 **.eld
+**/venv
+**/.vscode
